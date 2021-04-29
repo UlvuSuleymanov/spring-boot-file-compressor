@@ -22,23 +22,23 @@ public class FileServiceImpl implements FileService {
     @Override
     public String getNewFilePath(String oldPath) {
 
-        if(oldPath.toCharArray()[oldPath.length()-1]=='/')
-            oldPath.substring(0,oldPath.length()-2);
+       if(oldPath.toCharArray()[oldPath.length()-1]=='/')
+        oldPath= oldPath.substring(0,oldPath.length()-2);
 
 
       String[] crumbs = oldPath.split("/");
-      String fileName =  "/"+crumbs[crumbs.length-1];
+      String fileName =  crumbs[crumbs.length-1];
 
       if(fileName.contains("."))
       {
-         return oldPath.replace(fileName,"")+"FILE-"+ UUID.randomUUID().toString()+".zip";
+         return oldPath.replace(fileName,"")+"/FILE-"+ UUID.randomUUID().toString()+".zip";
 
       }
 
 
 
 
-      return oldPath.replace(fileName,"")+"FOLDER-"+ UUID.randomUUID().toString()+".zip";
+      return oldPath.replace(fileName,"")+"/FOLDER-"+ UUID.randomUUID().toString()+".zip";
 
      }
 
