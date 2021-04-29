@@ -10,6 +10,12 @@ public class ReadyTaskResponse {
 
     }
 
+    public ReadyTaskResponse(Task task) {
+        if(task!=null){
+     status=task.getStatus();
+     path=task.getExportPath();
+        }
+    }
 
     public ReadyTaskResponse(String status, String path) {
         this.status = status;

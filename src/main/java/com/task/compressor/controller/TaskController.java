@@ -8,6 +8,9 @@ import com.task.compressor.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zeroturnaround.zip.ZipUtil;
+
+import java.io.File;
 
 @RestController
 public class TaskController {
@@ -18,7 +21,14 @@ public class TaskController {
 
     @PostMapping("/zip")
     public AddedTaskResponse zip (@RequestBody final ZipRequestModel zipRequestModel){
+
+
+
+
+
        Task task = taskService.zipFile(zipRequestModel.getPath());
+
+
        return new AddedTaskResponse(task.getId());
     }
 

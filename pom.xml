@@ -32,6 +32,12 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.zeroturnaround</groupId>
+			<artifactId>zt-zip</artifactId>
+			<version>1.14</version>
+			<type>jar</type>
+		</dependency>
     </dependencies>
 
 	<build>
