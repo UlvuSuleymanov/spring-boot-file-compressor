@@ -1,14 +1,14 @@
 package com.task.compressor.model;
 
-public class TaskResponse {
+public class AddedTaskResponse {
 
     private int id;
 
 
-    public TaskResponse(int id) {
+    public AddedTaskResponse(int id) {
         this.id = id;
     }
-    public TaskResponse() {
+    public AddedTaskResponse() {
 
     }
 

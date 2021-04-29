@@ -1,37 +1,40 @@
 package com.task.compressor.repository;
 
 import com.task.compressor.constants.FileStatus;
-import com.task.compressor.model.ZipFileModel;
+import com.task.compressor.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileRepository {
-
-    private  static List<ZipFileModel> zippedFiles = new ArrayList<>();
+public class TaskRepository {
 
     //I assume that no object will be deleted from the list.
-    public static  ZipFileModel save(String path){
-        ZipFileModel zippedFile = new ZipFileModel(
+    private  static List<Task> tasks = new ArrayList<>();
 
-            zippedFiles.size()+1,
-                FileStatus.IN_PROGRESS.getStatus(),
-                path
-        );
-
-
-       zippedFiles.add(zippedFile);
-
-       return zippedFile;
+    public static Task save(Task task){
+       task.setId(tasks.size());
+       tasks.add(task);
+       return task;
     }
+    public  static Task update (Task task){
+
+        tasks.set(task.getId(),task);
+        return tasks.get(task.getId());
+    }
+
 
 
 
     public static void setStatus(String status,Integer id){
-        zippedFiles.get(id).setStatus(status);
+        tasks.get(id).setStatus(status);
     }
 
-    public static void getStatus(Integer id){
-        zippedFiles.get(id).getStatus();
+
+    public static Task getTask(Integer id){
+        if(id<tasks.size()) {
+             return tasks.get(id);
+        }
+        return null;
     }
+
 }

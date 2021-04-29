@@ -1,17 +1,19 @@
 package com.task.compressor.model;
 
-public class ZipFileModel {
+public class Task {
 
     private Integer id;
     private String status;
     private String path;
 
+    private String exportPath;
 
-    public ZipFileModel() {
+
+    public Task() {
 
     }
 
-    public ZipFileModel(Integer id, String status, String path) {
+    public Task(Integer id, String status, String path) {
         this.id = id;
         this.status = status;
         this.path = path;
@@ -39,5 +41,13 @@ public class ZipFileModel {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getExportPath() {
+        return exportPath;
+    }
+
+    public void setExportPath(String exportPath) {
+        this.exportPath = exportPath;
     }
 }

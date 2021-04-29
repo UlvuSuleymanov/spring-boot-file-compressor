@@ -2,7 +2,7 @@ package com.task.compressor.constants;
 
 public enum FileStatus {
     IN_PROGRESS("IN_PROGRESS"),
-    FAILED ("FAILEAD"),
+    FAILED ("FAILED"),
     COMPLETED("COMPLETED");
 
 

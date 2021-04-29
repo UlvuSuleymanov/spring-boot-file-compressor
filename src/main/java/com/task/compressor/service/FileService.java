@@ -1,10 +1,24 @@
 package com.task.compressor.service;
 
-public interface FileService {
-    String zipFile(String path);
+import com.task.compressor.constants.FileStatus;
+import com.task.compressor.model.Task;
 
-    String getStatus(Integer id);
+import java.io.File;
+
+public interface FileService {
+
 
     boolean checkFileExistence(String path);
+
+    //return status
+    public String zipFile(String importedFilePath, String exportedFilePath);
+
+
+    //return path with random name from same folder
+    String getNewFilePath(String oldPath);
+
+
+
+
 
 }
