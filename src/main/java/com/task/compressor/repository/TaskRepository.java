@@ -1,6 +1,6 @@
 package com.task.compressor.repository;
 
-import com.task.compressor.constants.FileStatus;
+import com.task.compressor.exception.TaskNotFoundException;
 import com.task.compressor.model.Task;
 
 import java.util.ArrayList;
@@ -31,10 +31,12 @@ public class TaskRepository {
 
 
     public static Task getTask(Integer id){
-        if(id<tasks.size()) {
-             return tasks.get(id);
+        int size = tasks.size();
+        if(size==0 | id>=tasks.size()) {
+            throw new TaskNotFoundException();
         }
-        return null;
+        return tasks.get(id);
+
     }
 
 }

@@ -8,9 +8,8 @@ import com.task.compressor.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.zeroturnaround.zip.ZipUtil;
 
-import java.io.File;
+ import java.io.IOException;
 
 @RestController
 public class TaskController {
@@ -20,20 +19,15 @@ public class TaskController {
 
 
     @PostMapping("/zip")
-    public AddedTaskResponse zip (@RequestBody final ZipRequestModel zipRequestModel){
+    public AddedTaskResponse zip (@RequestBody final ZipRequestModel zipRequestModel) throws IOException, InterruptedException {
 
-
-
-
-
-       Task task = taskService.zipFile(zipRequestModel.getPath());
-
+       Task task = taskService.executeTask(zipRequestModel.getPath());
 
        return new AddedTaskResponse(task.getId());
     }
 
     @GetMapping("/status")
-    ResponseEntity getStatus(@RequestParam("id") Integer id){
+     ResponseEntity getStatus(@RequestParam("id") Integer id){
         ReadyTaskResponse readyTaskResponse = taskService.getStatus(id);
         return  ResponseEntity.ok(readyTaskResponse);
     }

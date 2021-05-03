@@ -1,24 +1,16 @@
 package com.task.compressor.service;
 
-import com.task.compressor.constants.FileStatus;
 import com.task.compressor.model.ReadyTaskResponse;
-import com.task.compressor.model.Task;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.zip.ZipOutputStream;
 
 public interface FileService {
 
+    ReadyTaskResponse zipFile(String importedFilePath) throws IOException;
 
-
-
-    ReadyTaskResponse zip(String importedFilePath);
-
-
-    //return path with random name from same folder
-    String getNewFilePath(String oldPath);
-
-
-
+    void zip(File source, ZipOutputStream zipOutputStream, String fileName) throws IOException;
 
 
 }
