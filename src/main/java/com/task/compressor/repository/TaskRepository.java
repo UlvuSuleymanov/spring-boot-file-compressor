@@ -25,7 +25,8 @@ public class TaskRepository {
 
 
 
-    public static void setStatus(String status,Integer id){
+    public static void setStatus(String status,Integer id)
+    {
         tasks.get(id).setStatus(status);
     }
 

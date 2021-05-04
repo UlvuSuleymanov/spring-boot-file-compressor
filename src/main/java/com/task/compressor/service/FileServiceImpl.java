@@ -12,25 +12,34 @@ import java.util.zip.ZipOutputStream;
 public class FileServiceImpl implements FileService {
 
     @Override
-    public ReadyTaskResponse zipFile(String importedFilePath) throws IOException {
+    public ReadyTaskResponse zipFile(String importedFilePath) {
 
         File source = new File(importedFilePath);
 
-        if(!source.exists())
-            throw new FileNotFoundException();
+        if(!source.exists()) {
+            System.out.println("a");
+
+            return new ReadyTaskResponse(TaskStatus.FAILED.getStatus(), null);
+        }
 
         String expoPath=source.getParent()+"\\"+UUID.randomUUID()+".zip";
-        ZipOutputStream zipOutputStream = new ZipOutputStream( new FileOutputStream(expoPath));
 
-       zip(source,zipOutputStream,source.getName());
+        try {
+            ZipOutputStream zipOutputStream = new ZipOutputStream( new FileOutputStream(expoPath));
 
+            zip(source,zipOutputStream,source.getName());
+            zipOutputStream.closeEntry();
+            zipOutputStream.close();
+            zipOutputStream.flush();
 
-        zipOutputStream.closeEntry();
-        zipOutputStream.close();
-        zipOutputStream.flush();
+            return  new ReadyTaskResponse(TaskStatus.COMPLETED.getStatus(),expoPath.replace("\\", "/"));
+        }catch(Exception e) {
+            e.printStackTrace();
 
+            return  new ReadyTaskResponse(TaskStatus.FAILED.getStatus(),null);
+        }
+       
 
-        return  new ReadyTaskResponse(TaskStatus.COMPLETED.getStatus(),expoPath);
 
     }
 
